@@ -58,3 +58,18 @@ function displayPersonInfo(person: Person) {
 
 displayPersonInfo(person);
 displayPersonInfo(person2);
+
+/** ---- Typing Arrays ---- */
+
+// Using arrays it is necessary to use the square brackets to indicate that it is an array of a certain type.
+
+const ages: number[] = [23, 43, 13, 41];
+
+/**
+ * Challenge: create an array of people objects and
+ * manually type it as an array of Person types
+ */
+
+// Array<Person> is another way to type an array of Person objects. It is equivalent to Person[].
+const people: Person[] = [person, person2];
+

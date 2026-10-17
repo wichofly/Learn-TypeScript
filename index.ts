@@ -43,16 +43,19 @@ function addNewPizza(pizza: Pizza) {
 function placeOrder(pizzaName: string) {
   const selectedPizza = menu.find((pizzObj) => pizzObj.name === pizzaName);
 
-  if (selectedPizza) {
-    cashInRegister += selectedPizza.price;
-    const newOrder: Order = {
-      id: nextOrderId++, // Increment the order ID for each new order
-      pizza: selectedPizza,
-      status: 'ordered',
-    };
-    orderQueue.push(newOrder);
-    return newOrder;
+  if (!selectedPizza) {
+    console.error(`${pizzaName} is not on the menu`);
+    return;
   }
+
+  cashInRegister += selectedPizza.price;
+  const newOrder: Order = {
+    id: nextOrderId++, // Increment the order ID for each new order
+    pizza: selectedPizza,
+    status: 'ordered',
+  };
+  orderQueue.push(newOrder);
+  return newOrder;
 }
 
 /**

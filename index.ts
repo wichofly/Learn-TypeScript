@@ -26,7 +26,7 @@ const orderQueue: Order[] = [];
  * and adds it to the menu.
  */
 
-function addNewPizza(pizza: Pizza) {
+function addNewPizza(pizza: Pizza): void {
   menu.push(pizza);
 }
 
@@ -39,7 +39,7 @@ function addNewPizza(pizza: Pizza) {
  * 4. returns the new order object (just in case we need it later)
  */
 
-function placeOrder(pizzaName: string) {
+function placeOrder(pizzaName: string): Order | undefined {
   const selectedPizza = menu.find((pizzObj) => pizzObj.name === pizzaName);
 
   if (!selectedPizza) {
@@ -65,7 +65,7 @@ function placeOrder(pizzaName: string) {
  * Note: you'll need to ensure that we're adding IDs to our orders when we create new orders. You can use a global `nextOrderId` variable and increment it every time a new order is created to simulate real IDs being managed for us by a database.
  */
 
-function completeOrder(orderId: number) {
+function completeOrder(orderId: number): Order | undefined {
   const order = orderQueue.find((order) => order.id === orderId);
 
   if (!order) {
@@ -90,7 +90,7 @@ function completeOrder(orderId: number) {
 // Type Narrowing is a way to narrow down the type of a variable within a conditional block.
 // In this case, we can use the `typeof` operator to check if the `identifier` is a string or a number, and then use the appropriate logic to find the pizza in the menu.
 
-function getPizzaDetail(identifier: string | number) {
+function getPizzaDetail(identifier: string | number): Pizza | undefined {
   if (typeof identifier === 'string') {
     return menu.find(
       (pizza) =>
@@ -101,16 +101,16 @@ function getPizzaDetail(identifier: string | number) {
   } else throw new TypeError('Identifier must be a string or a number');
 }
 
-addNewPizza({ id: 5, name: 'BBQ Chicken', price: 11 });
-addNewPizza({ id: 6, name: 'Caprichosa', price: 11 });
-addNewPizza({ id: 7, name: 'Diavola', price: 12 });
+// addNewPizza({ id: 5, name: 'BBQ Chicken', price: 11 });
+// addNewPizza({ id: 6, name: 'Caprichosa', price: 11 });
+// addNewPizza({ id: 7, name: 'Diavola', price: 12 });
 
-placeOrder('Pepperoni');
-placeOrder('Diavola');
-completeOrder(2);
+// placeOrder('Pepperoni');
+// placeOrder('Diavola');
+// completeOrder(2);
 
-console.log('Menu', menu);
-console.log('Cash in Register', cashInRegister);
-console.log('Order Queue', orderQueue);
-console.log('Order completed', completeOrder(2));
-console.log('Pizza detail', getPizzaDetail(3));
+// console.log('Menu', menu);
+// console.log('Cash in Register', cashInRegister);
+// console.log('Order Queue', orderQueue);
+// console.log('Order completed', completeOrder(2));
+// console.log('Pizza detail', getPizzaDetail(3));

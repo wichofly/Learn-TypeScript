@@ -12,7 +12,7 @@ type Order = {
 const menu: Pizza[] = [
   { name: 'Margherita', price: 8 },
   { name: 'Pepperoni', price: 10 },
-  { name: 'Hawaiian', price: 10 },
+  { name: 'Hawaiana', price: 10 },
   { name: 'Veggie', price: 9 },
 ];
 
@@ -77,12 +77,14 @@ function completeOrder(orderId: number) {
 }
 
 addNewPizza({ name: 'BBQ Chicken', price: 11 });
-addNewPizza({ name: 'Pepperoni', price: 11 });
+addNewPizza({ name: 'Caprichosa', price: 11 });
 addNewPizza({ name: 'Diavola', price: 12 });
 
 placeOrder('Pepperoni');
+placeOrder('Diavola');
 completeOrder(2);
 
 console.log('Menu', menu);
 console.log('Cash in Register', cashInRegister);
 console.log('Order Queue', orderQueue);
+console.log('Order completed', completeOrder(2));

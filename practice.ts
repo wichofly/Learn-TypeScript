@@ -81,8 +81,23 @@ const userName2 = 'Santiago'; // TypeScript infers the type of username2 is the 
 /** ---- Union Types ---- */
 
 type User = {
-  name: string;
+  username: string;
   role: 'guest' | 'member' | 'admin'; // This is a union type that can be either 'guest' | 'admin' | 'user'
 };
 
 let userRole: User['role'] = 'member';
+
+/** ---- Function return types ---- */
+
+const users: User[] = [
+  { username: 'daniel_prof', role: 'member' },
+  { username: 'jesus_christ', role: 'admin' },
+  { username: 'pil_king', role: 'guest' },
+];
+
+function fetchUserDetails(username: string): User {
+  const user = users.find((user) => user.username === username);
+
+  if (!user) throw new Error(`User with username ${username} not found`);
+  return user;
+}

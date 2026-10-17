@@ -1,0 +1,8 @@
+{
+  "name": "learn-typescript",
+  "private": true,
+  "scripts": {
+    "practice": "node --watch --watch-preserve-output practice.ts",
+    "index": "node --watch --watch-preserve-output index.ts"
+  }
+}

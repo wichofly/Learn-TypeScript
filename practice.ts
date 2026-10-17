@@ -49,3 +49,12 @@ let person2: Person = {
   age: 43,
   isStudent: false,
 };
+
+function displayPersonInfo(person: Person) {
+  console.log(
+    `${person.name} is ${person.age} years old and lives in ${person.address?.city}`,
+  );
+}
+
+displayPersonInfo(person);
+displayPersonInfo(person2);

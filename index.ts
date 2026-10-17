@@ -91,13 +91,14 @@ function completeOrder(orderId: number) {
 // In this case, we can use the `typeof` operator to check if the `identifier` is a string or a number, and then use the appropriate logic to find the pizza in the menu.
 
 function getPizzaDetail(identifier: string | number) {
-  if (typeof identifier === 'string')
+  if (typeof identifier === 'string') {
     return menu.find(
       (pizza) =>
         pizza.name.toLocaleLowerCase() === identifier.toLocaleLowerCase(),
     );
-
-  return menu.find((pizza) => pizza.id === identifier);
+  } else if (typeof identifier === 'number') {
+    return menu.find((pizza) => pizza.id === identifier);
+  } else throw new TypeError('Identifier must be a string or a number');
 }
 
 addNewPizza({ id: 5, name: 'BBQ Chicken', price: 11 });

@@ -73,3 +73,16 @@ const ages: number[] = [23, 43, 13, 41];
 // Array<Person> is another way to type an array of Person objects. It is equivalent to Person[].
 const people: Person[] = [person, person2];
 
+/** ---- Literal Types ---- */
+
+let userName = 'Peter'; // TypeScript infers the type of username is a string.
+const userName2 = 'Santiago'; // TypeScript infers the type of username2 is the literal type 'Santiago' because it is a constant and cannot be changed. This is called a literal type. It is a type that can only have one value.
+
+/** ---- Union Types ---- */
+
+type User = {
+  name: string;
+  role: 'guest' | 'member' | 'admin'; // This is a union type that can be either 'guest' | 'admin' | 'user'
+};
+
+let userRole: User['role'] = 'member';

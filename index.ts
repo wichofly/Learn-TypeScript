@@ -1,8 +1,6 @@
 type Pizza = {
-  id?: number;
   name: string;
   price: number;
-  status?: 'ordered' | 'completed';
 };
 
 type Order = {

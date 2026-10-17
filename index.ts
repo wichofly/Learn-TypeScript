@@ -77,6 +77,29 @@ function completeOrder(orderId: number) {
   return order;
 }
 
+/**
+ * Challenge: create a new utility function called getPizzaDetail. It will take
+ * a parameter called `identifier`, but there's a twist: we want this identifier
+ * to be allowed to either be the string name of the pizza (e.g. "Pepperoni"),
+ * OR to be the number ID of the pizza (e.g. 2).
+ *
+ * write the code to check if the parameter is a string
+ * or a number, and use the menu.find() method accordingly
+ */
+
+// Type Narrowing is a way to narrow down the type of a variable within a conditional block.
+// In this case, we can use the `typeof` operator to check if the `identifier` is a string or a number, and then use the appropriate logic to find the pizza in the menu.
+
+function getPizzaDetail(identifier: string | number) {
+  if (typeof identifier === 'string')
+    return menu.find(
+      (pizza) =>
+        pizza.name.toLocaleLowerCase() === identifier.toLocaleLowerCase(),
+    );
+
+  return menu.find((pizza) => pizza.id === identifier);
+}
+
 addNewPizza({ id: 5, name: 'BBQ Chicken', price: 11 });
 addNewPizza({ id: 6, name: 'Caprichosa', price: 11 });
 addNewPizza({ id: 7, name: 'Diavola', price: 12 });
@@ -89,3 +112,4 @@ console.log('Menu', menu);
 console.log('Cash in Register', cashInRegister);
 console.log('Order Queue', orderQueue);
 console.log('Order completed', completeOrder(2));
+console.log('Pizza detail', getPizzaDetail(3));

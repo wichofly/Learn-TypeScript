@@ -10,16 +10,17 @@ type Order = {
   status: 'ordered' | 'completed';
 };
 
-const menu: Pizza[] = [
-  { id: 1, name: 'Margherita', price: 8 },
-  { id: 2, name: 'Pepperoni', price: 10 },
-  { id: 3, name: 'Hawaiana', price: 10 },
-  { id: 4, name: 'Veggie', price: 9 },
-];
-
 let cashInRegister: number = 100;
 let nextOrderId: number = 1;
+let nextPizzaId: number = 1;
 const orderQueue: Order[] = [];
+
+const menu: Pizza[] = [
+  { id: nextPizzaId++, name: 'Margherita', price: 8 },
+  { id: nextPizzaId++, name: 'Pepperoni', price: 10 },
+  { id: nextPizzaId++, name: 'Hawaiana', price: 10 },
+  { id: nextPizzaId++, name: 'Veggie', price: 9 },
+];
 
 /**
  * Challenge: Add a utility function "addNewPizza" that takes a pizza object
@@ -29,6 +30,10 @@ const orderQueue: Order[] = [];
 function addNewPizza(pizza: Pizza): void {
   menu.push(pizza);
 }
+
+addNewPizza({ id: nextPizzaId++, name: 'BBQ Chicken', price: 11 });
+addNewPizza({ id: nextPizzaId++, name: 'Caprichosa', price: 11 });
+addNewPizza({ id: nextPizzaId++, name: 'Diavola', price: 12 });
 
 /**
  * Write another utility function, placeOrder, that takes a pizza name parameter and:
@@ -101,15 +106,11 @@ function getPizzaDetail(identifier: string | number): Pizza | undefined {
   } else throw new TypeError('Identifier must be a string or a number');
 }
 
-// addNewPizza({ id: 5, name: 'BBQ Chicken', price: 11 });
-// addNewPizza({ id: 6, name: 'Caprichosa', price: 11 });
-// addNewPizza({ id: 7, name: 'Diavola', price: 12 });
-
 // placeOrder('Pepperoni');
 // placeOrder('Diavola');
 // completeOrder(2);
 
-// console.log('Menu', menu);
+console.log('Menu', menu);
 // console.log('Cash in Register', cashInRegister);
 // console.log('Order Queue', orderQueue);
 // console.log('Order completed', completeOrder(2));

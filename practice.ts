@@ -81,6 +81,7 @@ const userName2 = 'Santiago'; // TypeScript infers the type of username2 is the 
 /** ---- Union Types ---- */
 
 type User = {
+  id: number;
   username: string;
   role: 'guest' | 'member' | 'admin'; // This is a union type that can be either 'guest' | 'admin' | 'user'
 };
@@ -90,9 +91,10 @@ let userRole: User['role'] = 'member';
 /** ---- Function return types ---- */
 
 const users: User[] = [
-  { username: 'daniel_prof', role: 'member' },
-  { username: 'jesus_christ', role: 'admin' },
-  { username: 'pil_king', role: 'guest' },
+  { id: 1, username: 'daniel_prof', role: 'member' },
+  { id: 2, username: 'jesus_christ', role: 'admin' },
+  { id: 3, username: 'pil_king', role: 'guest' },
+  { id: 4, username: 'simon_disciple', role: 'guest' },
 ];
 
 function fetchUserDetails(username: string): User {
@@ -101,3 +103,24 @@ function fetchUserDetails(username: string): User {
   if (!user) throw new Error(`User with username ${username} not found`);
   return user;
 }
+
+/** ---- Utility Types & Partial ---- */
+
+// Find the user in the array by the id
+// Use Object.assign to update the found user in place.
+// Check MDN if you need help with using Object.assign
+
+function updateUser(id: number, updates: Partial<User>) {
+  const user = users.find((user) => user.id === id);
+
+  if (!user) throw new Error(`User with id ${id} not found`);
+
+  Object.assign(user, updates);
+  return user;
+}
+console.log('Before update', users);
+
+updateUser(1, { username: 'john_disciple' });
+updateUser(4, { role: 'member' });
+
+console.log('After update', users);

@@ -86,15 +86,17 @@ type User = {
   role: 'guest' | 'member' | 'admin'; // This is a union type that can be either 'guest' | 'admin' | 'user'
 };
 
+let nextUserId = 1;
+
 let userRole: User['role'] = 'member';
 
 /** ---- Function return types ---- */
 
 const users: User[] = [
-  { id: 1, username: 'daniel_prof', role: 'member' },
-  { id: 2, username: 'jesus_christ', role: 'admin' },
-  { id: 3, username: 'pil_king', role: 'guest' },
-  { id: 4, username: 'simon_disciple', role: 'guest' },
+  { id: nextUserId++, username: 'daniel_prof', role: 'member' },
+  { id: nextUserId++, username: 'jesus_christ', role: 'admin' },
+  { id: nextUserId++, username: 'pil_king', role: 'guest' },
+  { id: nextUserId++, username: 'simon_disciple', role: 'guest' },
 ];
 
 function fetchUserDetails(username: string): User {
@@ -104,7 +106,7 @@ function fetchUserDetails(username: string): User {
   return user;
 }
 
-/** ---- Utility Types & Partial ---- */
+/** ---- Utility Types: Partial | Omit ---- */
 
 // Find the user in the array by the id
 // Use Object.assign to update the found user in place.
@@ -118,9 +120,20 @@ function updateUser(id: number, updates: Partial<User>) {
   Object.assign(user, updates);
   return user;
 }
+
 console.log('Before update', users);
 
 updateUser(1, { username: 'john_disciple' });
 updateUser(4, { role: 'member' });
 
 console.log('After update', users);
+
+function addNewUser(newUser: Omit<User, 'id'>): User {
+  const user: User = { id: nextUserId++, ...newUser };
+  users.push(user);
+  return user;
+}
+
+addNewUser({ username: 'mary_magdalene', role: 'member' });
+
+console.log('After adding new user', users);

@@ -38,10 +38,10 @@ function addNewPizza(pizza: Omit<Pizza, 'id'>): Pizza {
   return newPizza;
 }
 
-addNewPizza({ name: 'BBQ Chicken', price: 11 });
-addNewPizza({ name: 'Caprichosa', price: 11 });
-addNewPizza({ name: 'Diavola', price: 12 });
-addNewPizza({ name: '4 Cheeses', price: 12 });
+// addNewPizza({ name: 'BBQ Chicken', price: 11 });
+// addNewPizza({ name: 'Caprichosa', price: 11 });
+// addNewPizza({ name: 'Diavola', price: 12 });
+// addNewPizza({ name: '4 Cheeses', price: 12 });
 
 /**
  * Write another utility function, placeOrder, that takes a pizza name parameter and:
@@ -69,6 +69,23 @@ function placeOrder(pizzaName: string): Order | undefined {
   orderQueue.push(newOrder);
   return newOrder;
 }
+
+/**
+ * Challenge: add types our generic `addToArray` function. It should work
+ * for adding new pizzas to the `menu` and adding new orders to the `orderQueue`
+ */
+
+function addToArray<T>(array: T[], item: T): T[] {
+  array.push(item);
+  return array;
+}
+
+addToArray(menu, { id: nextPizzaId++, name: 'BBQ Chicken', price: 11 });
+addToArray(orderQueue, {
+  id: nextOrderId++,
+  pizza: { id: nextPizzaId++, name: 'Caprichosa', price: 11 },
+  status: 'completed',
+});
 
 /**
  * Challenge: write another utility function, completeOrder, that takes an orderId as a parameter
@@ -120,6 +137,6 @@ function getPizzaDetail(identifier: string | number): Pizza | undefined {
 
 console.log('Menu', menu);
 // console.log('Cash in Register', cashInRegister);
-// console.log('Order Queue', orderQueue);
+console.log('Order Queue', orderQueue);
 // console.log('Order completed', completeOrder(2));
 // console.log('Pizza detail', getPizzaDetail(3));

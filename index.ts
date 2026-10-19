@@ -25,15 +25,23 @@ const menu: Pizza[] = [
 /**
  * Challenge: Add a utility function "addNewPizza" that takes a pizza object
  * and adds it to the menu.
+ *
+ * Challenge:
+ * Fix the addNewPizza function using the Omit utility type. This might
+ * require more than just changing the "Pizza" typed `pizza` parameter.
+ * Return the new pizza object (with the id added) from the function.
  */
 
-function addNewPizza(pizza: Pizza): void {
-  menu.push(pizza);
+function addNewPizza(pizza: Omit<Pizza, 'id'>): Pizza {
+  const newPizza: Pizza = { id: nextPizzaId++, ...pizza };
+  menu.push(newPizza);
+  return newPizza;
 }
 
-addNewPizza({ id: nextPizzaId++, name: 'BBQ Chicken', price: 11 });
-addNewPizza({ id: nextPizzaId++, name: 'Caprichosa', price: 11 });
-addNewPizza({ id: nextPizzaId++, name: 'Diavola', price: 12 });
+addNewPizza({ name: 'BBQ Chicken', price: 11 });
+addNewPizza({ name: 'Caprichosa', price: 11 });
+addNewPizza({ name: 'Diavola', price: 12 });
+addNewPizza({ name: '4 Cheeses', price: 12 });
 
 /**
  * Write another utility function, placeOrder, that takes a pizza name parameter and:

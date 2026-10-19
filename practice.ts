@@ -137,3 +137,28 @@ function addNewUser(newUser: Omit<User, 'id'>): User {
 addNewUser({ username: 'mary_magdalene', role: 'member' });
 
 console.log('After adding new user', users);
+
+/** ---- Generic ---- */
+
+// A generic is a placeholder for a type. It lets you reuse a function or type with different data types while keeping TypeScript’s checks.
+
+// Add flexibility to existing functions, types, etc.
+// Act like functions parameter, but for types.
+
+const scores = [4, 21, 12, 9];
+const favoriteThings = [
+  'raindrops on roses',
+  'whiskers on kittens',
+  'bright copper kettles',
+  'warm woolen mittens',
+];
+const voters = [
+  { name: 'Alice', age: 42 },
+  { name: 'Bob', age: 77 },
+];
+
+function getLastItem<PlaceholderType>(array: PlaceholderType[]) {
+  return array[array.length - 1];
+}
+
+console.log('Last item in scores array', getLastItem(scores)); // output: 9

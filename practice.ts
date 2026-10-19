@@ -141,6 +141,7 @@ console.log('After adding new user', users);
 /** ---- Generic ---- */
 
 // A generic is a placeholder for a type. It lets you reuse a function or type with different data types while keeping TypeScript’s checks.
+// https://www.typescriptlang.org/docs/handbook/2/generics.html#handbook-content
 
 // Add flexibility to existing functions, types, etc.
 // Act like functions parameter, but for types.
@@ -157,7 +158,12 @@ const voters = [
   { name: 'Bob', age: 77 },
 ];
 
-function getLastItem<PlaceholderType>(array: PlaceholderType[]) {
+/**
+ * Challenge: figure out how to explicitly type the return value
+ * of the function!
+ */
+
+function getLastItem<T>(array: T[]): T | undefined {
   return array[array.length - 1];
 }
 

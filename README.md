@@ -161,7 +161,7 @@ function addNewUser(newUser: Omit<User, 'id'>): User {
 
 ## Generics: reusing logic while keeping types
 
-A generic introduces a type parameter, such as `T`, that stands for a type supplied or inferred for a call. It connects the types of the inputs and result.
+A generic introduces a type parameter, such as `T`, that stands for a type supplied or inferred for a call. It connects the types of the inputs and result.[Generics](https://www.typescriptlang.org/docs/handbook/2/generics.html#handbook-content)
 
 ```ts
 function getLastItem<T>(array: T[]): T | undefined {
